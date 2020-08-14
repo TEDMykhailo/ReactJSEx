@@ -2,8 +2,8 @@ import React, {Component} from "react";
 
 import AppHeader from "../app-header";
 import ListItem from "../list-item";
-import AddItemPanel from "../add-item-panel/add-item-panel";
-
+import AddItemPanel from "../add-item-panel";
+import Pagination from "../Pagination/"
 
 export default class App extends Component {
     count = 0;
@@ -43,8 +43,40 @@ export default class App extends Component {
         return data;
     }
 
+    pagesNumber = () => {
+        let countPages = [];
+
+        for (let i = 1; i <= Math.ceil(this.state.data.length / this.state.desiredPage); i++) {
+            countPages.push(i);
+        }
+
+        return countPages;
+    }
+
+    paginateItemValue = () => {
+        const indexOfLastValue = this.state.currentPage * this.state.desiredPage;
+        const indexOfFirstValue = indexOfLastValue - this.state.desiredPage;
+        const currentValue = this.rev().slice(indexOfFirstValue, indexOfLastValue);
+
+        console.log(currentValue)
+
+        return currentValue.map((value) => {
+            return value;
+        });
+    }
+
+    changePages = (id) => {
+        let is = id ? id : 1
+        this.setState({
+            currentPage: Number(is),
+        });
+    }
+
     state = {
-        data: this.createRandomData()
+        data: this.createRandomData(),
+        currentPage: 1,
+        desiredPage: 10,
+        color: 'red'
     };
 
     rev = () => {
@@ -97,8 +129,15 @@ export default class App extends Component {
                     addItem={this.addItemValue}
                 />
                 <ListItem
-                    todos={this.rev()}
+                    todos={this.paginateItemValue()}
+                    // todos={this.rev()}
                     onDeleted={this.deleteItem}
+                />
+                <Pagination
+                    value={this.state.currentPage}
+                    valueColor={this.state.color}
+                    countPages={this.pagesNumber()}
+                    onChangePages={this.changePages}
                 />
             </div>
         )
