@@ -121,6 +121,41 @@ export default class App extends Component {
         })
     }
 
+    doubleClickItem = (id) => {
+        this.setState(({data}) => {
+            let a = data.map((el) => {
+                if(el.id === id) {
+                    el.state = !el.state;
+                }
+                return el
+            });
+
+            localStorage.setItem('value', JSON.stringify(a));
+
+            return {
+                data: a
+            }
+        })
+    }
+
+    changeItem = (id, value) => {
+        this.setState(({data}) => {
+            let a = data.map((el) => {
+                if(el.id === id) {
+                    el.label = value;
+                    el.state = !el.state;
+                }
+                return el
+            });
+
+            localStorage.setItem('value', JSON.stringify(a));
+
+            return {
+                data: a
+            }
+        })
+    }
+
     render() {
         return (
             <div>
@@ -129,9 +164,10 @@ export default class App extends Component {
                     addItem={this.addItemValue}
                 />
                 <ListItem
-                    todos={this.paginateItemValue()}
-                    // todos={this.rev()}
+                    items={this.paginateItemValue()}
                     onDeleted={this.deleteItem}
+                    doDoubleClickItem={this.doubleClickItem}
+                    doChangeItem={this.changeItem}
                 />
                 <Pagination
                     value={this.state.currentPage}

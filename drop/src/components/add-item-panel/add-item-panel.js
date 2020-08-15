@@ -26,7 +26,7 @@ export default class AddItemPanel extends Component {
     render() {
         return (
             <form
-            onSubmit={this.onSubmit}>
+                onSubmit={this.onSubmit}>
                 <input
                     type="text"
                     placeholder='type here...'
