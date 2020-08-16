@@ -76,7 +76,7 @@ export default class App extends Component {
         data: this.createRandomData(),
         currentPage: 1,
         desiredPage: 10,
-        color: 'red'
+        color: 'btn-secondary'
     };
 
     rev = () => {
@@ -156,9 +156,10 @@ export default class App extends Component {
         })
     }
 
+
     render() {
         return (
-            <div>
+            <div className="container">
                 <AppHeader/>
                 <AddItemPanel
                     addItem={this.addItemValue}

@@ -1,10 +1,11 @@
-import React, { Component} from "react";
+import React, {Component} from "react";
 import pagination from "./Pagination.css"
 
 export default class Pagination extends Component {
     render() {
         const {value, valueColor, countPages, onChangePages} = this.props;
-        const color = (val, item) => val === item ? valueColor : '';
+        let className = 'btn';
+        const color = (val, item) => val === item ? className + ' ' + valueColor : className + ' ' + 'btn-light';
 
         const el = countPages.map((item) => {
             return <button
@@ -15,8 +16,10 @@ export default class Pagination extends Component {
         })
 
         return (
-            <div>
-                {el}
+            <div className='row'>
+                <div className="offset-sm-2 col-sm-8">
+                    {el}
+                </div>
             </div>
         );
     }

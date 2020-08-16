@@ -1,0 +1,14 @@
+.btnDelete {
+    padding: 0;
+    height: 50px;
+}
+
+.m15{
+    margin-bottom: 15px;
+}
+
+.clip {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

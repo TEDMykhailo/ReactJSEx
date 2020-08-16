@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import addItemPanel from "./add-item-panel.css"
 
 export default class AddItemPanel extends Component {
     state= {
@@ -26,14 +27,16 @@ export default class AddItemPanel extends Component {
     render() {
         return (
             <form
+                className="row m15"
                 onSubmit={this.onSubmit}>
                 <input
+                    className="form-control col-sm-10"
                     type="text"
                     placeholder='type here...'
                     onChange={this.onLabelChange}
                     value={this.state.label}
                 />
-                <button> Add </button>
+                <button className="btn btn-light offset-sm-1 col-sm-1"> Add </button>
             </form>
         )
     }
